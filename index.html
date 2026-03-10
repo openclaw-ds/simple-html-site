@@ -3,16 +3,241 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Site</title>
+    <title>Nova Dashboard</title>
     <style>
-      body { font-family: Arial, sans-serif; display:grid; place-items:center; min-height:100vh; margin:0; background:#f5f7fb; }
-      .card { background:white; border:1px solid #e6e9f0; border-radius:12px; padding:24px 28px; text-align:center; }
+      :root {
+        --bg: #0b1020;
+        --panel: rgba(255, 255, 255, 0.08);
+        --panel-strong: rgba(255, 255, 255, 0.14);
+        --text: #eef2ff;
+        --muted: #b8c0e0;
+        --accent: #7c8cff;
+        --accent2: #4ee0c3;
+        --danger: #ff6b8a;
+        --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(1200px 600px at 10% -20%, #3f4b9f55, transparent 60%),
+          radial-gradient(900px 500px at 90% 0%, #2fbfa655, transparent 55%),
+          var(--bg);
+        min-height: 100vh;
+      }
+
+      .wrap {
+        max-width: 1120px;
+        margin: 34px auto;
+        padding: 0 18px 28px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        box-shadow: var(--shadow);
+      }
+      .brand h1 {
+        margin: 0;
+        font-size: 1.08rem;
+        letter-spacing: 0.3px;
+      }
+      .pill {
+        font-size: 0.78rem;
+        color: #dce3ff;
+        background: var(--panel);
+        border: 1px solid #ffffff26;
+        padding: 7px 10px;
+        border-radius: 999px;
+        backdrop-filter: blur(6px);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid #ffffff1f;
+        border-radius: 18px;
+        padding: 16px;
+        backdrop-filter: blur(10px);
+        box-shadow: var(--shadow);
+      }
+
+      .kpi { grid-column: span 3; }
+      .kpi .label { color: var(--muted); font-size: 0.84rem; }
+      .kpi .value { font-size: 1.7rem; font-weight: 700; margin-top: 4px; }
+      .trend { font-size: 0.8rem; margin-top: 8px; }
+      .up { color: #73e3a2; }
+      .down { color: var(--danger); }
+
+      .main { grid-column: span 8; }
+      .side { grid-column: span 4; }
+
+      .title {
+        margin: 0 0 12px;
+        font-size: 0.95rem;
+        color: #dfe5ff;
+        letter-spacing: 0.2px;
+      }
+
+      .bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+        height: 170px;
+        padding: 8px 4px 0;
+      }
+      .bar {
+        flex: 1;
+        border-radius: 10px 10px 6px 6px;
+        background: linear-gradient(180deg, var(--accent), #9f85ff 70%, #7487ff);
+        opacity: 0.95;
+      }
+      .bar:nth-child(2n) { background: linear-gradient(180deg, var(--accent2), #4ad7e8); }
+
+      .legend {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        color: var(--muted);
+        font-size: 0.75rem;
+        margin-top: 8px;
+        text-align: center;
+      }
+
+      .list {
+        display: grid;
+        gap: 10px;
+      }
+      .row {
+        background: var(--panel-strong);
+        border: 1px solid #ffffff22;
+        border-radius: 12px;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .name { font-size: 0.9rem; }
+      .sub { color: var(--muted); font-size: 0.78rem; margin-top: 2px; }
+      .score { font-weight: 700; }
+
+      .footer {
+        color: var(--muted);
+        font-size: 0.8rem;
+        margin-top: 12px;
+        text-align: right;
+      }
+
+      @media (max-width: 960px) {
+        .kpi { grid-column: span 6; }
+        .main, .side { grid-column: span 12; }
+      }
     </style>
   </head>
   <body>
-    <div class="card">
-      <h1>Hello from GitHub Pages 👋</h1>
-      <p>This is a very simple HTML website.</p>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <div class="logo"></div>
+          <h1>Nova Dashboard</h1>
+        </div>
+        <div class="pill">Live • Updated just now</div>
+      </div>
+
+      <div class="grid">
+        <section class="card kpi">
+          <div class="label">Revenue</div>
+          <div class="value">$84.2K</div>
+          <div class="trend up">▲ +12.4% vs last month</div>
+        </section>
+        <section class="card kpi">
+          <div class="label">Users</div>
+          <div class="value">12,480</div>
+          <div class="trend up">▲ +8.1% active users</div>
+        </section>
+        <section class="card kpi">
+          <div class="label">Conversion</div>
+          <div class="value">4.32%</div>
+          <div class="trend up">▲ +0.6 pts</div>
+        </section>
+        <section class="card kpi">
+          <div class="label">Churn</div>
+          <div class="value">1.18%</div>
+          <div class="trend down">▼ +0.2 pts risk</div>
+        </section>
+
+        <section class="card main">
+          <h2 class="title">Weekly performance</h2>
+          <div class="bars">
+            <div class="bar" style="height: 42%"></div>
+            <div class="bar" style="height: 58%"></div>
+            <div class="bar" style="height: 47%"></div>
+            <div class="bar" style="height: 75%"></div>
+            <div class="bar" style="height: 66%"></div>
+            <div class="bar" style="height: 82%"></div>
+            <div class="bar" style="height: 93%"></div>
+          </div>
+          <div class="legend">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+        </section>
+
+        <section class="card side">
+          <h2 class="title">Top channels</h2>
+          <div class="list">
+            <div class="row">
+              <div>
+                <div class="name">Organic Search</div>
+                <div class="sub">1,984 visits</div>
+              </div>
+              <div class="score">42%</div>
+            </div>
+            <div class="row">
+              <div>
+                <div class="name">Direct</div>
+                <div class="sub">1,204 visits</div>
+              </div>
+              <div class="score">26%</div>
+            </div>
+            <div class="row">
+              <div>
+                <div class="name">Social</div>
+                <div class="sub">984 visits</div>
+              </div>
+              <div class="score">21%</div>
+            </div>
+            <div class="row">
+              <div>
+                <div class="name">Referral</div>
+                <div class="sub">502 visits</div>
+              </div>
+              <div class="score">11%</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer">Designed with glassmorphism • Single-file HTML</div>
     </div>
   </body>
 </html>
